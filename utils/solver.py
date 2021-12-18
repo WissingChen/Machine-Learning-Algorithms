@@ -7,3 +7,17 @@
 import numpy as np
 
 
+class SGD(object):
+    """
+    for neural network
+    """
+    def __init__(self, lr):
+        self.lr = lr
+
+    def step(self, layers, cache):
+        cache.reverse()
+        for i in range(len(layers)):
+            dw, db = cache[i]
+            layers[i].weight -= (self.lr * dw)
+            layers[i].bias -= (self.lr * db)
+        return layers

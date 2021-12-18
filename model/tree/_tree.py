@@ -6,7 +6,7 @@
 # @time    : 1/12/2021 下午7:21
 import numpy as np
 from model.base import Base
-from utils.metric_binary import accuracy
+from utils.metric.metric_binary import accuracy
 
 
 class DecisionTreeRegression(Base):
@@ -24,11 +24,11 @@ class DecisionTreeRegression(Base):
 
 
 class DecisionTreeClassifier(Base):
+    """
+    不能处理缺失值，目前都是双leaf并且是用于连续值的
+    """
     def __init__(self,
                  criterion='gini',
-                 max_depth=None,
-                 min_samples_split=2,
-                 min_samples_leaf=1,
                  ):
         Base.__init__(self)
 
@@ -37,7 +37,6 @@ class DecisionTreeClassifier(Base):
         if criterion == 'gini':
             self.criterion = _gini_index
 
-        self.max_depth = max_depth
 
     def fit(self, x, y):
         data = np.concatenate([x, y.reshape([-1, 1])], axis=1)

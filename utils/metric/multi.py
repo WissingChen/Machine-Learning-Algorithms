@@ -2,18 +2,18 @@
 # @author  : wissingcc
 # @contact : chen867820261@gmail.com
 # @software: PyCharm
-# @file    : metric_binary.py
-# @time    : 30/11/2021 下午8:53
+# @file    : multi.py
+# @time    : 17/12/2021 下午2:39
 import numpy as np
 
 
 def confusion_matrix(prob, y, th=0.5):
     """
-    binary classification confusion matrix.
+    mu classification confusion matrix.
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
     :param y: target
     :param th: the threshold of logic
-    :return: TP, FP, TN, FN
+    :return: a confusion matrix,
     """
     logic = np.zeros_like(prob)
     logic[prob >= th] = 1

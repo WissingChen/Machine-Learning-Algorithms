@@ -2,7 +2,7 @@
 # @author  : wissingcc
 # @contact : chen867820261@gmail.com
 # @software: PyCharm
-# @file    : metric_regression.py
+# @file    : regression.py
 # @time    : 30/11/2021 下午8:53
 import numpy as np
 

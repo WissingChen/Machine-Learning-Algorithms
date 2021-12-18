@@ -6,7 +6,7 @@
 # @time    : 1/12/2021 上午10:02
 import numpy as np
 from ..base import Base
-from utils.metric_regression import mse
+from utils.metric.metric_regression import mse
 
 
 class LinearRegression(Base):

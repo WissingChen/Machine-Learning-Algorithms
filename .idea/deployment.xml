@@ -2,7 +2,14 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="omnisky@219.216.66.36:22">
+      <paths name="omnisky@219.216.66.12:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="omnisky@219.216.66.27:22">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

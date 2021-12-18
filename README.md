@@ -1,5 +1,6 @@
 # Machine-Learning-Algorithms
-Recently, I review the Machine Learning and try to program all the algorithms of it only use numpy.
+Recently, I review the Machine Learning and try to program all the algorithms of it only use numpy. 
+You can research the formula derivation from https://github.com/WissingChen/pumpkin-book.
 Maybe, it still has some mistakes, so you could tell me if you found.
 
 ## Progress
@@ -16,7 +17,7 @@ Maybe, it still has some mistakes, so you could tell me if you found.
   1. MLP classifier
   
 
-__Note:__ Of course, you can learn the theory from the __ _init_ __.py in each model package. 
+__Note:__ Of course, you can learn the theory from the __ _init_ __.py in each model package.
 
 
 ## Usage
