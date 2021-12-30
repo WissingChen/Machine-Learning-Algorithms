@@ -35,11 +35,15 @@ def relu(x):
     return np.maximum(x, 0)
 
 
+def leakyrelu(x):
+    return np.maximum(x, x/10.)
+
+
 def softmax(x, dim=1):
-    max = np.max(x, axis=dim, keepdims=True)  # returns max of each row and keeps same dims
-    e_x = np.exp(x - max)  # subtracts each row with its max value
-    sum = np.sum(e_x, axis=dim, keepdims=True)  # returns sum of each row and keeps same dims
-    y = e_x / sum
+    _max = np.max(x, axis=dim, keepdims=True)  # returns max of each row and keeps same dims
+    e_x = np.exp(x - _max)  # subtracts each row with its max value
+    _sum = np.sum(e_x, axis=dim, keepdims=True)  # returns sum of each row and keeps same dims
+    y = e_x / _sum
     return y
 
 
@@ -63,6 +67,7 @@ class Softmax(object):
         y = softmax(x, dim)
         return y
     # todo grid
+    # work with cross entropy loss
 
 
 class Relu(object):
@@ -75,3 +80,16 @@ class Relu(object):
 
     def backward(self, dy):
         return np.multiply(dy, np.int64(self.x > 0))
+
+
+class LeakyRelu(object):
+    def __init__(self):
+        self.x = None
+
+    def __call__(self, x):
+        self.x = x
+        return leakyrelu(x)
+
+    def backward(self, dy):
+        grid = np.multiply(dy, np.int64(self.x > 0))
+        return np.multiply(grid, .1 * np.float64(self.x <= 0))

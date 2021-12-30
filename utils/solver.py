@@ -11,13 +11,26 @@ class SGD(object):
     """
     for neural network
     """
-    def __init__(self, lr):
+    def __init__(self, lr, momentum=0.9):
         self.lr = lr
+        self.momentum = momentum
 
     def step(self, layers, cache):
         cache.reverse()
         for i in range(len(layers)):
             dw, db = cache[i]
-            layers[i].weight -= (self.lr * dw)
-            layers[i].bias -= (self.lr * db)
+            layers[i].velocity_w = self.lr * dw + self.momentum * layers[i].velocity_w
+            layers[i].velocity_b = self.lr * db + self.momentum * layers[i].velocity_b
+            layers[i].weight -= layers[i].velocity_w
+            layers[i].bias -= layers[i].velocity_b
         return layers
+
+
+class Adam(object):
+    def __init__(self):
+        pass
+
+
+class AdaGrad(object):
+    def __init__(self):
+        pass

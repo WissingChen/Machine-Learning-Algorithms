@@ -32,7 +32,7 @@ class MLPBase(Base):
         del self.cache
         self.cache = []
 
-    def fit(self, x, y, epoch=100, batch_size=50):
+    def fit(self, x, y, epoch=100, batch_size=200):
         m, n = x.shape
         val_m = int(self.val_ratio * m)
         train_m = m - val_m
@@ -136,6 +136,8 @@ class Layer(object):
         self.weight = init_params(in_ch, out_ch)
         self.bias = np.zeros([1, out_ch])
         self.h = None
+        self.velocity_w = 0
+        self.velocity_b = 0
 
     def forward(self, x):
         self.h = x.copy()

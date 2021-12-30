@@ -20,13 +20,13 @@ if __name__ == '__main__':
     train = data[m:]
     test = data[:m]
     # model
-    model = ME((30, 1000, 1000, 2))
+    model = ME((30, 100, 2), learning_rate=3.e-5)
     model_gt = SK(solver='sgd')
-    model.fit(train[:, :-1], train[:, -1], 100)
+    model.fit(train[:, :-1], train[:, -1], 200)
     model_gt.fit(train[:, :-1], train[:, -1])
 
     pre = model.predict(test[:, :-1])
     pre_gt = model_gt.predict(test[:, :-1])
-    print(model.score())
+    print(model._score(pre_gt, test[:, -1]))
     print("my model: ", accuracy(pre[:, 1], test[:, -1]),
           "\nsci-kit model: ", accuracy(pre_gt, test[:, -1]))
