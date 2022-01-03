@@ -28,4 +28,4 @@ class LinearRegression(Base):
         return np.dot(x, self.w)
 
     def score(self):
-        pass
+        return self._score
