@@ -4,8 +4,6 @@
     <list default="true" id="f850ea26-bb81-4255-b881-aecdf8e0a1a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/linear/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/linear/_linear_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_linear_regression.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/linear/_ridge.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_ridge.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +148,7 @@
       <workItem from="1640357897848" duration="1830000" />
       <workItem from="1640667301134" duration="11717000" />
       <workItem from="1640845185081" duration="1953000" />
-      <workItem from="1640850457043" duration="11094000" />
+      <workItem from="1640850457043" duration="21881000" />
     </task>
     <servers />
   </component>
@@ -170,7 +168,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$main.coverage" NAME="main Coverage Results" MODIFIED="1641222492687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$main.coverage" NAME="main Coverage Results" MODIFIED="1641278760971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$_mlp.coverage" NAME="_mlp Coverage Results" MODIFIED="1639660799249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/nn" />
     <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$temp.coverage" NAME="temp Coverage Results" MODIFIED="1639748335221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
