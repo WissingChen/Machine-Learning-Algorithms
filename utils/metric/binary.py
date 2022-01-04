@@ -104,14 +104,20 @@ def roc(prob, y):
     return _fpr, _tpr
 
 
-def auc(_fpr, _tpr):
+def auc(_roc=None, _fpr=None, _tpr=None):
     """
     Calculate the area under the ROC curve,
     auc = summation i to n {[x_(i+1) - x_(i)] * 1/2*[y_(i+1) + y_(i)]}, except x_(i+1) = x_(i)
-    :param _fpr: x
-    :param _tpr: y
+    :param _roc: ()
+    :param _fpr: x axes
+    :param _tpr: y axes
     :return: auc value
     """
+    if _fpr is None and _tpr is None:
+        if _roc is None:
+            print("None input")
+        else:
+            _fpr, _tpr = _roc
     _auc = 0.
     for i in range(len(_fpr)-1):
         if _fpr[i+1] == _fpr[i]:
