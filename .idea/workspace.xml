@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f850ea26-bb81-4255-b881-aecdf8e0a1a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/model/linear/_lasso.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/linear/_sgd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/linear/_bayes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/linear/_elasticnet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/linear/_perceptron.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/linear/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/metric/binary.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/metric/binary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/linear/_lasso.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_lasso.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/metric/multi.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/metric/multi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +60,7 @@
       <recent name="H:\project\Study\Machine-Learning-Algorithms\utils\metric" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.multi">
     <configuration name="_mlp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Machine-Learning-Algorithms" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -103,6 +105,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="multi" type="PythonConfigurationType" factoryName="Python">
+      <module name="Machine-Learning-Algorithms" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/metric/multi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Machine-Learning-Algorithms" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -125,6 +149,12 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.multi" />
+      <item itemvalue="Python._mlp" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.temp" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
@@ -151,7 +181,7 @@
       <workItem from="1640357897848" duration="1830000" />
       <workItem from="1640667301134" duration="11717000" />
       <workItem from="1640845185081" duration="1953000" />
-      <workItem from="1640850457043" duration="35307000" />
+      <workItem from="1640850457043" duration="43123000" />
     </task>
     <servers />
   </component>
@@ -173,6 +203,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$main.coverage" NAME="main Coverage Results" MODIFIED="1641306296940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$_mlp.coverage" NAME="_mlp Coverage Results" MODIFIED="1639660799249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/nn" />
+    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$multi.coverage" NAME="multi Coverage Results" MODIFIED="1641350700832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$temp.coverage" NAME="temp Coverage Results" MODIFIED="1639748335221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -11,20 +11,26 @@ def confusion_matrix(prob, y, th=0.5):
     """
     mu classification confusion matrix.
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
+                    a confusion matrix, [target, prediction]
     :param y: target
     :param th: the threshold of logic
-    :return: a confusion matrix,
+    :return: tp, fp, tn, fn for each classes
     """
-    logic = np.zeros_like(prob)
-    logic[prob >= th] = 1
-    tp = np.sum((y == 1) * (logic == 1))
-    tn = np.sum((y == 0) * (logic == 0))
-    fp = np.sum((y == 0) * (logic == 1))
-    fn = np.sum((y == 1) * (logic == 0))
+    n = prob.shape[1]
+    cm = np.zeros([n, n])
+    logic = np.argmax(prob, axis=1)
+    for i in range(prob.shape[0]):
+        cm[int(y[i]), logic[i]] += 1
+
+    tp = np.diag(cm)
+    fn = cm.sum(axis=1) - np.diag(cm)
+    fp = cm.sum(axis=0) - np.diag(cm)
+    tn = cm.sum() - (fp + fn + tp)
+
     return tp, fp, tn, fn
 
 
-def recall(prob, y, th=0.5):
+def recall(prob, y, th=0.5, mode='macro'):
     """
     binary recall, focus on selecting more positive examples, tp / (tp + fn)
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
@@ -34,10 +40,18 @@ def recall(prob, y, th=0.5):
     """
 
     tp, _, _, fn = confusion_matrix(prob, y, th)
-    return tp / (tp + fn)
+    _recall = tp / (tp + fn)
+    macro = _recall.mean()
+    if mode == 'all':
+        return _recall
+    elif mode == 'macro':
+        return macro
+    elif mode == 'micro':
+        micro = tp.sum() / (tp.sum() + fn.sum())
+        return micro
 
 
-def precision(prob, y):
+def precision(prob, y, mode='macro'):
     """
     binary precision, focus on selecting positive examples precisely, tp / (tp + fp)
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
@@ -45,10 +59,18 @@ def precision(prob, y):
     :return: the value of precision
     """
     tp, fp, _, _ = confusion_matrix(prob, y)
-    return tp / (tp + fp)
+    _precision = tp / (tp + fp)
+    macro = _precision.mean()
+    if mode == 'all':
+        return _precision
+    elif mode == 'macro':
+        return macro
+    elif mode == 'micro':
+        micro = tp.sum() / (tp.sum() + fp.sum())
+        return micro
 
 
-def accuracy(prob, y, th=0.5):
+def accuracy(prob, y, th=0.5, mode='macro'):
     """
     get the accuracy of the binary classification task. (tp + tn) / (tp + fp + tn + fn)
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
@@ -57,25 +79,41 @@ def accuracy(prob, y, th=0.5):
     :return: acc
     """
     tp, fp, tn, fn = confusion_matrix(prob, y, th)
-    return (tp + tn) / (tp + fp + tn + fn)
+    _acc = (tp + tn) / (tp + fp + tn + fn)
+    macro = _acc.mean()
+    if mode == 'all':
+        return _acc
+    elif mode == 'macro':
+        return macro
+    elif mode == 'micro':
+        micro = (tp.sum() + tn.sum()) / (tp.sum() + fp.sum() + tn.sum() + fn.sum())
+        return micro
 
 
-def tpr(prob, y, th=0.5):
+def tpr(prob, y, th=0.5, mode='macro'):
     """
     It is recall
     """
-    return recall(prob, y, th)
+    return recall(prob, y, th, mode)
 
 
-def fpr(prob, y, th=0.5):
+def fpr(prob, y, th=0.5, mode='macro'):
     """
     FPR = FP / (FP + TN)
     """
     _, fp, tn, _ = confusion_matrix(prob, y, th)
-    return fp / (fp + tn)
+    _fpr = fp / (fp + tn)
+    macro = _fpr.mean()
+    if mode == 'all':
+        return _fpr
+    elif mode == 'macro':
+        return macro
+    elif mode == 'micro':
+        micro = fp.sum() / (fp.sum() + tn.sum())
+        return micro
 
 
-def f_score(prob, y, beta=1.):
+def f_score(prob, y, beta=1., mode='macro'):
     """
     weighted sum between recall and precision, f_beta = [(1+beta**2)*p*r] / [(beta**2*p)+r]
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
@@ -83,24 +121,24 @@ def f_score(prob, y, beta=1.):
     :param beta:
     :return:
     """
-    r = recall(prob, y)
-    p = precision(prob, y)
+    r = recall(prob, y, mode=mode)
+    p = precision(prob, y, mode=mode)
     f_beta = ((1 + beta ** 2) * p * r) / ((beta ** 2 * p) + r)
     return f_beta
 
 
-def roc(prob, y):
+def roc(prob, y, mode='macro'):
     """
     Receiver Operating Characteristic, X-coordinate is FPR, y-coordinate is TPR
-    :return: _fpr(x), _tpr(y)
+    :return: _fpr(x), _tpr(y), in "all" mode _fpr/_tpr -> [x, n_classes]
     """
     ths = np.sort(np.unique(prob))
     ths = ths[::-1]
     _tpr = []
     _fpr = []
     for th in ths:
-        _tpr.append(tpr(prob, y, th))
-        _fpr.append(fpr(prob, y, th))
+        _tpr.append(tpr(prob, y, th, mode))
+        _fpr.append(fpr(prob, y, th, mode))
     return _fpr, _tpr
 
 
@@ -123,8 +161,9 @@ def auc(_fpr, _tpr):
 
 
 def _for_test():
-    Y = (np.concatenate([np.ones([50]), np.zeros([50])]))
+    Y = (np.concatenate([np.ones([50]), np.zeros([50]), np.ones([50])*2]))
     np.random.shuffle(Y)
-    Prob = np.random.random([100])
+    Prob = np.random.random([150, 1])
     x, y = roc(Prob, Y)
     print(auc(x, y))
+

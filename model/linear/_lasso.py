@@ -44,4 +44,10 @@ def _ols(x, y, alpha):
 
 
 def _cd():
+    # todo Coordinate Descent
+    pass
+
+
+def _lars():
+    # todo LARS for Lasso
     pass
