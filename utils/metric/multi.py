@@ -5,9 +5,10 @@
 # @file    : multi.py
 # @time    : 17/12/2021 下午2:39
 import numpy as np
+from utils.metric.binary import roc, auc
 
 
-def confusion_matrix(prob, y, th=0.5):
+def confusion_matrix(prob, y):
     """
     mu classification confusion matrix.
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
@@ -30,7 +31,7 @@ def confusion_matrix(prob, y, th=0.5):
     return tp, fp, tn, fn
 
 
-def recall(prob, y, th=0.5, mode='macro'):
+def recall(prob, y, mode='macro'):
     """
     binary recall, focus on selecting more positive examples, tp / (tp + fn)
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
@@ -39,7 +40,7 @@ def recall(prob, y, th=0.5, mode='macro'):
     :return: the value of recall
     """
 
-    tp, _, _, fn = confusion_matrix(prob, y, th)
+    tp, _, _, fn = confusion_matrix(prob, y)
     _recall = tp / (tp + fn)
     macro = _recall.mean()
     if mode == 'all':
@@ -70,7 +71,7 @@ def precision(prob, y, mode='macro'):
         return micro
 
 
-def accuracy(prob, y, th=0.5, mode='macro'):
+def accuracy(prob, y, mode='macro'):
     """
     get the accuracy of the binary classification task. (tp + tn) / (tp + fp + tn + fn)
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
@@ -78,7 +79,7 @@ def accuracy(prob, y, th=0.5, mode='macro'):
     :param th: the threshold of logic
     :return: acc
     """
-    tp, fp, tn, fn = confusion_matrix(prob, y, th)
+    tp, fp, tn, fn = confusion_matrix(prob, y)
     _acc = (tp + tn) / (tp + fp + tn + fn)
     macro = _acc.mean()
     if mode == 'all':
@@ -90,18 +91,18 @@ def accuracy(prob, y, th=0.5, mode='macro'):
         return micro
 
 
-def tpr(prob, y, th=0.5, mode='macro'):
+def tpr(prob, y, mode='macro'):
     """
     It is recall
     """
-    return recall(prob, y, th, mode)
+    return recall(prob, y, mode)
 
 
-def fpr(prob, y, th=0.5, mode='macro'):
+def fpr(prob, y, mode='macro'):
     """
     FPR = FP / (FP + TN)
     """
-    _, fp, tn, _ = confusion_matrix(prob, y, th)
+    _, fp, tn, _ = confusion_matrix(prob, y)
     _fpr = fp / (fp + tn)
     macro = _fpr.mean()
     if mode == 'all':
@@ -116,6 +117,7 @@ def fpr(prob, y, th=0.5, mode='macro'):
 def f_score(prob, y, beta=1., mode='macro'):
     """
     weighted sum between recall and precision, f_beta = [(1+beta**2)*p*r] / [(beta**2*p)+r]
+    :param mode:
     :param prob: the prob prediction, you can also use logic straightly. And the input is one dim.
     :param y: target
     :param beta:
@@ -127,43 +129,53 @@ def f_score(prob, y, beta=1., mode='macro'):
     return f_beta
 
 
-def roc(prob, y, mode='macro'):
-    """
-    Receiver Operating Characteristic, X-coordinate is FPR, y-coordinate is TPR
-    :return: _fpr(x), _tpr(y), in "all" mode _fpr/_tpr -> [x, n_classes]
-    """
-    ths = np.sort(np.unique(prob))
-    ths = ths[::-1]
-    _tpr = []
-    _fpr = []
-    for th in ths:
-        _tpr.append(tpr(prob, y, th, mode))
-        _fpr.append(fpr(prob, y, th, mode))
-    return _fpr, _tpr
-
-
-def auc(_fpr, _tpr):
+def roc_auc(prob, y, mode='macro'):
     """
     Calculate the area under the ROC curve,
     auc = summation i to n {[x_(i+1) - x_(i)] * 1/2*[y_(i+1) + y_(i)]}, except x_(i+1) = x_(i)
-    :param _fpr: x
-    :param _tpr: y
-    :return: auc value
+    :param mode:
+    :param prob:
+    :param y: should be [n_sample,]
+    :return: roc={fpr, tpr}, auc value
     """
-    _auc = 0.
-    for i in range(len(_fpr)-1):
-        if _fpr[i+1] == _fpr[i]:
-            continue
-        xs = _fpr[i+1] - _fpr[i]
-        ys = (_tpr[i+1] + _tpr[i]) / 2.
-        _auc += (xs * ys)
-    return _auc
+    n_classes = prob.shape[1]
+    label = np.zeros_like(prob)
+    y = y.reshape(-1)
+    # 计算每一个类别的
+    _roc_auc = dict()
+    _fpr = dict()
+    _tpr = dict()
+    for i in range(n_classes):
+        label[y == i, i] = 1
+        _fpr[i], _tpr[i] = roc(label[:, i], prob[:, i])
+        _roc_auc[i] = auc(_fpr[i], _tpr[i])
+
+    if mode == 'all':
+        return _fpr, _tpr, _roc_auc
+
+    elif mode == 'macro':
+        # 首先收集所有的假正率
+        all_fpr = np.unique(np.concatenate([_fpr[i] for i in range(n_classes)]))
+
+        # 然后在此点内插所有ROC曲线
+        mean_tpr = np.zeros_like(all_fpr)
+        for i in range(n_classes):
+            mean_tpr += np.interp(all_fpr, _fpr[i], _tpr[i])
+
+        # 最终计算平均和ROC
+        mean_tpr /= n_classes
+
+        return all_fpr, mean_tpr, auc(all_fpr, mean_tpr)
+
+    elif mode == 'micro':
+        micro_fpr, micro_tpr = roc(label.ravel(), prob.ravel())
+        return micro_fpr, micro_tpr, auc(micro_fpr, micro_tpr)
 
 
 def _for_test():
     Y = (np.concatenate([np.ones([50]), np.zeros([50]), np.ones([50])*2]))
     np.random.shuffle(Y)
-    Prob = np.random.random([150, 1])
-    x, y = roc(Prob, Y)
-    print(auc(x, y))
+    Prob = np.random.random([150, 3])
+    print(roc_auc(Prob, Y)[2])
+
 

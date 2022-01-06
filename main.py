@@ -10,15 +10,22 @@ from sklearn.datasets import load_iris  # 3 classes
 from sklearn.datasets import load_digits  # image   10 classes
 from sklearn.datasets import load_diabetes  # regression
 
-from utils.metric.regression import mse
+from utils.metric.regression import mse, spearman_corr
 from utils.metric.binary import accuracy, auc, roc
+from utils.metric.multi import accuracy as _accuracy
 
 import numpy as np
-from model.linear import Lasso as ME
-from sklearn.linear_model import Lasso as SK
+from model.linear import RidgeClassifier as ME
+from sklearn.linear_model import RidgeClassifier as SK
+
+dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
+           'multi': load_iris, 'cv': load_digits}
+
+task = ['regression', 'binary', 'multi', 'cv']
 
 if __name__ == '__main__':
-    x, y = load_iris(return_X_y=True)
+    task_id = 1
+    x, y = dataset[task[task_id]](return_X_y=True)
     m, n = x.shape
     data = np.concatenate([x, y.reshape([m, -1])], axis=1)
     np.random.shuffle(data)
@@ -28,11 +35,23 @@ if __name__ == '__main__':
     # model
     model = ME()
     model_gt = SK()
+    # train
     model.fit(train[:, :n], train[:, n:])
     model_gt.fit(train[:, :n], train[:, n:])
-
+    # test
     pre = model.predict(test[:, :n])
     pre_gt = model_gt.predict(test[:, :n])
+    # score
     print(model.score())
-    print("my model: ", accuracy(pre, test[:, n:]),
-          "\nsci-kit model: ", accuracy(pre_gt, test[:, n:]))
+    if task_id == 0:
+        print("my model: ", mse(pre, test[:, n:]),
+              "\nsci-kit model: ", mse(pre_gt, test[:, n:]))
+    elif task_id == 1:
+        print("my model: ", accuracy(pre[: 1], test[:, n]),
+              "\nsci-kit model: ", accuracy(pre_gt[: 1], test[:, n]))
+    elif task_id == 2:
+        print("my model: ", _accuracy(pre, test[:, n]),
+              "\nsci-kit model: ", _accuracy(pre_gt, test[:, n]))
+    elif task_id == 3:
+        print("my model: ", accuracy(pre, test[:, n:]),
+              "\nsci-kit model: ", accuracy(pre_gt, test[:, n:]))

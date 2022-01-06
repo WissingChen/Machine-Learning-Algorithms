@@ -16,7 +16,7 @@ class LinearRegression(Base):
 
     def fit(self, x, y):
         m, n = x.shape
-        y = y.reshape([-1, 1])
+        y = y.reshape([m, -1])
         x = np.concatenate([np.ones([m, 1]), x], axis=1)
         q, r = np.linalg.qr(x)
         self.w = np.linalg.inv(r).dot(q.T).dot(y)

@@ -11,6 +11,11 @@ from utils.metric.regression import mse
 
 
 class Ridge(Base):
+    """
+    Ridge Regression
+    :param alpha: l2 value
+    :param solver: 'none', 'lsqr'
+    """
     def __init__(self, alpha=.1, solver='none'):
         Base.__init__(self)
         self.w = None
@@ -19,7 +24,7 @@ class Ridge(Base):
 
     def fit(self, x, y):
         m, n = x.shape
-        y = y.reshape([-1, 1])
+        y = y.reshape([m, -1])
         x = np.concatenate([np.ones([m, 1]), x], axis=1)
         if self.solver == 'lsqr':
             self.w = _lsqr(x, y, self.alpha)
@@ -60,3 +65,24 @@ def _lsqr(x, y, alpha):
         w[:, i] = info[0]
 
     return w
+
+
+class RidgeClassifier(Ridge):
+    """
+    only for binary classification
+    :param alpha: l2 value
+    :param solver: 'none', 'lsqr'
+    """
+    def __init__(self, alpha=.1, solver='none'):
+        Ridge.__init__(self, alpha=alpha, solver=solver)
+
+    @staticmethod
+    def cvt_input(y):
+        y_hat = y.copy()
+        y_hat[y_hat == 0] = -1
+        return y_hat
+
+    def fit(self, x, y):
+        y_hat = self.cvt_input(y)
+        Ridge.fit(self, x, y_hat)
+
