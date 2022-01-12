@@ -15,8 +15,8 @@ from utils.metric.binary import accuracy, auc, roc
 from utils.metric.multi import accuracy as _accuracy
 
 import numpy as np
-from model.linear import RidgeClassifier as ME
-from sklearn.linear_model import RidgeClassifier as SK
+from model.linear import Lasso as ME
+from sklearn.linear_model import Lasso as SK
 
 dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
            'multi': load_iris, 'cv': load_digits}
@@ -24,7 +24,7 @@ dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
 task = ['regression', 'binary', 'multi', 'cv']
 
 if __name__ == '__main__':
-    task_id = 1
+    task_id = 0
     x, y = dataset[task[task_id]](return_X_y=True)
     m, n = x.shape
     data = np.concatenate([x, y.reshape([m, -1])], axis=1)

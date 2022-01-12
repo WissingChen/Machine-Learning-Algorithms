@@ -1,28 +1,43 @@
 # Machine-Learning-Algorithms
-Recently, I review the Machine Learning and try to program all the algorithms of it only use numpy
+Recently, I review the Machine Learning and try to program all algorithms of it only use numpy
 (maybe use some api from scipy).
 
-## Progress
-### model
-* linear model
-  1. linear regression
-  2. ridge
-  3. lasso
+##TODO
+
+#### linear model
+- [X] linear regression
+- [X] ridge
+- [X] RidgeClassifier
+- [ ] lasso
+- [ ] ElasticNet
+- [ ] SGDClassifier
+- [ ] SGDRegression
+- [ ] LogisticRegression
+- [ ] BayesRidge
+- [ ] ARDRegression
+- [ ] Perceptron
+- [ ] PassiveAggressiveClassifier
+- [ ] PassiveAggressiveRegression
   
-* tree
-  1. decision tree classifier
+#### tree
+- [X] decision tree classifier
+- [ ] decision tree regression
   
-* neural network
-  1. MLP classifier
+#### neural network
+- [X] MLP classifier
+- [X] MLP regression
   
-* svm
-  1. svm Regression
-  
-* bayes
-* ensemble
+#### svm
+- [ ] svm classifier
+- [ ] svm Regression
+
+#### Feature
+- [ ] bayes
+- [ ] ensemble
+- [ ] ....
   
 
-__Note:__ Of course, you can learn the theory from the __ _init_ __.py in each model package.
+__Note:__ Of course, it maybe still has some mistake
 
 
 ## Usage

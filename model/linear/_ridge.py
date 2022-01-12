@@ -8,13 +8,28 @@ import numpy as np
 from scipy.sparse import linalg as sp_linalg
 from ..base import Base
 from utils.metric.regression import mse
+from utils.metric.binary import _acc
 
 
 class Ridge(Base):
     """
-    Ridge Regression
-    :param alpha: l2 value
-    :param solver: 'none', 'lsqr'
+    Linear least squares with l2 regularization.
+
+    Minimizes the objective function:
+
+    ||y - Xw||^2_2 + alpha * ||w||^2_2
+
+    This model solves a regression model where the loss function is
+    the linear least squares function and regularization is given by
+    the l2-norm. Also known as Ridge Regression or Tikhonov regularization.
+    This estimator has built-in support for multi-variate regression
+    (i.e., when y is a 2d-array of shape (n_samples, n_targets)).
+
+    Parameter
+    ---------
+    alpha: l2 coefficient   \n
+    solver: choice in ['none', 'lsqr']
+
     """
     def __init__(self, alpha=.1, solver='none'):
         Base.__init__(self)
@@ -23,6 +38,15 @@ class Ridge(Base):
         self.solver = solver
 
     def fit(self, x, y):
+        """
+        Fit Ridge Regression model.
+
+        Parameters
+        ----------
+        x : input data with shape [n_sample, n_feature]
+        y : target with shape [n_sample, n_output] or [n_sample,]
+
+        """
         m, n = x.shape
         y = y.reshape([m, -1])
         x = np.concatenate([np.ones([m, 1]), x], axis=1)
@@ -30,6 +54,7 @@ class Ridge(Base):
             self.w = _lsqr(x, y, self.alpha)
         elif self.solver == 'none':
             self.w = np.linalg.inv(np.dot(x.T, x) + self.alpha * np.eye(n+1)).dot(x.T).dot(y)
+        # use mse
         self._score = mse(np.dot(x, self.w), y)
 
     def predict(self, x):
@@ -69,9 +94,12 @@ def _lsqr(x, y, alpha):
 
 class RidgeClassifier(Ridge):
     """
-    only for binary classification
-    :param alpha: l2 value
-    :param solver: 'none', 'lsqr'
+    Only for binary classification
+
+    Parameter
+    ---------
+    alpha: l2 coefficient   \n
+    solver: choice in ['none', 'lsqr']
     """
     def __init__(self, alpha=.1, solver='none'):
         Ridge.__init__(self, alpha=alpha, solver=solver)
@@ -85,4 +113,6 @@ class RidgeClassifier(Ridge):
     def fit(self, x, y):
         y_hat = self.cvt_input(y)
         Ridge.fit(self, x, y_hat)
+        # use acc
+        self._score = _acc(self.predict(x), y)
 

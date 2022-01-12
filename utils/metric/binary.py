@@ -134,3 +134,13 @@ def _for_test():
     Prob = np.random.random([100])
     x, y = roc(Prob, Y)
     print(auc(x, y))
+
+
+def _acc(pre, y, th=.5):
+    """
+    calculate the accuracy without confusion matrix
+    """
+    # pre /= pre.max()
+    pre[pre >= th] = 1
+    pre[pre < th] = 0
+    return np.mean(pre == y)
