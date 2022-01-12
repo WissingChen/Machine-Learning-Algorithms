@@ -25,7 +25,7 @@ class DecisionTreeRegression(Base):
 
 class DecisionTreeClassifier(Base):
     """
-    不能处理缺失值，目前都是双leaf并且是用于连续值的
+    Can't handle the missing value, it's both a double leaf and it's for continuous values
     """
 
     def __init__(self,
@@ -100,7 +100,7 @@ def _gini(d):
     g = 0.
     for k in Y:
         g += ((np.sum(k == d) / m) ** 2)
-    return 1 - g  # have a problem about why not use "1-g"
+    return 1 - g
 
 
 def _gini_index(d):
@@ -125,7 +125,6 @@ def _gini_index(d):
             if g[i] > temp:
                 g[i] = temp
                 node[i] = v
-    # print(g, node)
     return g, node
 
 

@@ -12,7 +12,15 @@ from utils.param import init_params
 
 class Lasso(Base):
     """
-    Lasso Regression
+    Linear Model trained with L1 prior as regularizer (aka the Lasso)
+
+    The optimization objective for Lasso is::
+
+        (1 / (2 * n_samples)) * ||y - Xw||^2_2 + alpha * ||w||_1
+
+    Technically the Lasso model is optimizing the same objective function as
+    the Elastic Net with ``l1_ratio=1.0`` (no L2 penalty).
+
     :param alpha: l1 value
     :param solver: 'none', 'cd', 'lars'
                     'none': only use Ordinary Least Squares
@@ -26,6 +34,15 @@ class Lasso(Base):
         self.solver = solver
 
     def fit(self, x, y):
+        """
+        Fit Lasso Regression model.
+
+        Parameters
+        ----------
+        x : input data with shape [n_sample, n_feature]
+        y : target with shape [n_sample, n_output] or [n_sample,]
+
+        """
         m, n = x.shape
         y = y.reshape([m, -1])
         x = np.concatenate([np.ones([m, 1]), x], axis=1)
