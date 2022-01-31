@@ -5,12 +5,11 @@
 # @file    : _lasso.py
 # @time    : 4/1/2022 下午7:08
 import numpy as np
-from ..base import Base
 from utils.metric.regression import mse
 from utils.param import init_params
 
 
-class Lasso(Base):
+class Lasso(object):
     """
     Linear Model trained with L1 prior as regularizer (aka the Lasso)
 
@@ -28,10 +27,10 @@ class Lasso(Base):
                     'lars': Least Angle Regression
     """
     def __init__(self, alpha=.1, solver='none'):
-        Base.__init__(self)
         self.w = None
         self.alpha = alpha
         self.solver = solver
+        self._score = None
 
     def fit(self, x, y):
         """

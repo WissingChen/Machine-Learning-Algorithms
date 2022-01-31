@@ -9,28 +9,12 @@ from model.base import Base
 from utils.metric.binary import accuracy
 
 
-class DecisionTreeRegression(Base):
-    def __init__(self):
-        Base.__init__(self)
-
-    def fit(self, x, y):
-        pass
-
-    def predict(self, x):
-        pass
-
-    def score(self):
-        pass
-
-
 class DecisionTreeClassifier(Base):
     """
-    Can't handle the missing value, it's both a double leaf and it's for continuous values
+    CART
     """
 
-    def __init__(self,
-                 criterion='gini',
-                 ):
+    def __init__(self, criterion='gini'):
         Base.__init__(self)
 
         self.tree = None
@@ -59,15 +43,15 @@ class DecisionTreeClassifier(Base):
         :param node: create leaf based on the node
         :return:
         """
-        gini_index, node_value = self.criterion(data)
-        a = np.argmin(gini_index)
+        _index, node_value = self.criterion(data)
+        a = np.argmin(_index)
         if node is None:
-            self.tree = TreeNode([a, node_value[a]], data[:, -1], n_classes, _gini=gini_index[a])
+            self.tree = TreeNode([a, node_value[a]], data[:, -1], n_classes, _gini=_index[a])
             data_a, data_b = self.split_data(data, [a, node_value[a]])
             self.make_tree(data_a, n_classes, self.tree, "l")
             self.make_tree(data_b, n_classes, self.tree, "r")
         else:
-            leaf = TreeNode([a, node_value[a]], data[:, -1], n_classes, _gini=gini_index[a])
+            leaf = TreeNode([a, node_value[a]], data[:, -1], n_classes, _gini=_index[a])
             node.set_leaf(leaf, name)
             if len(np.unique(data[:, -1])) == 1:
                 return None
@@ -87,6 +71,15 @@ class DecisionTreeClassifier(Base):
         data_a = data[data[:, node_name] <= value]
         data_b = data[data[:, node_name] > value]
         return data_a, data_b
+
+
+class DecisionTreeRegression(DecisionTreeClassifier):
+    def __init__(self, criterion):
+        super(DecisionTreeRegression, self).__init__()
+        self.tree = None
+
+        if criterion == 'gini':
+            self.criterion = _gini_index
 
 
 def _gini(d):

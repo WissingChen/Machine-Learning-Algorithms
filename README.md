@@ -1,17 +1,17 @@
 # Machine-Learning-Algorithms
-Recently, I review the Machine Learning and try to program all algorithms of it only use __numpy__
+Recently, I review the Machine Learning and try to program all algorithms of it only use __NumPy__
 (maybe use some api from scipy).
 
 ## TODO
 
 #### Linear Model
-- [X] linear regression
-- [X] ridge
+- [X] Linear Regression
+- [X] Ridge
 - [X] RidgeClassifier
-- [X] lasso
+- [X] Lasso
 - [ ] ElasticNet
-- [ ] SGDClassifier
-- [ ] SGDRegression
+- [X] SGDClassifier
+- [X] SGDRegression
 - [ ] LogisticRegression
 - [ ] BayesRidge
 - [ ] ARDRegression
@@ -20,16 +20,16 @@ Recently, I review the Machine Learning and try to program all algorithms of it 
 - [ ] PassiveAggressiveRegression
   
 #### Decision Tree
-- [X] decision tree classifier
-- [ ] decision tree regression
+- [X] Decision Tree Classifier
+- [ ] Decision Tree Regression
   
 #### Neural Network
-- [X] MLP classifier
-- [X] MLP regression
+- [X] MLP Classifier
+- [X] MLP Regression
   
 #### Support Vector Machine
-- [ ] svm classifier
-- [ ] svm Regression
+- [ ] SVC
+- [ ] SVR
 
 #### Feature
 - [ ] bayes

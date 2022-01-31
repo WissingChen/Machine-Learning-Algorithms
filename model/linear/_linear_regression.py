@@ -5,11 +5,10 @@
 # @file    : _linear_regression.py
 # @time    : 1/12/2021 上午10:02
 import numpy as np
-from ..base import Base
 from utils.metric.regression import mse
 
 
-class LinearRegression(Base):
+class LinearRegression(object):
     """
     Ordinary least squares Linear Regression.
 
@@ -20,8 +19,8 @@ class LinearRegression(Base):
     In this instance, I use QR decomposition to calculate the analytical solution of linear regression.
     """
     def __init__(self):
-        Base.__init__(self)
         self.w = None
+        self._score = None
 
     def fit(self, x, y):
         """

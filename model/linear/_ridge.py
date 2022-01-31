@@ -6,12 +6,11 @@
 # @time    : 1/12/2021 下午6:54
 import numpy as np
 from scipy.sparse import linalg as sp_linalg
-from ..base import Base
 from utils.metric.regression import mse
 from utils.metric.binary import _acc
 
 
-class Ridge(Base):
+class Ridge(object):
     """
     Linear least squares with l2 regularization.
 
@@ -32,10 +31,10 @@ class Ridge(Base):
 
     """
     def __init__(self, alpha=.1, solver='none'):
-        Base.__init__(self)
         self.w = None
         self.alpha = alpha
         self.solver = solver
+        self._score = None
 
     def fit(self, x, y):
         """

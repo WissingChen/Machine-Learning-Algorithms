@@ -15,8 +15,8 @@ from utils.metric.binary import accuracy, auc, roc
 from utils.metric.multi import accuracy as _accuracy
 
 import numpy as np
-from model.tree import DecisionTreeClassifier as ME
-from sklearn.tree import DecisionTreeClassifier as SK
+from model.linear import SGDClassifier as ME
+from sklearn.linear_model import SGDClassifier as SK
 
 dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
            'multi': load_iris, 'cv': load_digits}
