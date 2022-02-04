@@ -15,8 +15,8 @@ from utils.metric.binary import accuracy, acc_v2
 from utils.metric.multi import accuracy as accuracy_m, acc_v2 as acc_v2_m
 
 import numpy as np
-from model.tree import DecisionTreeClassifier as ME
-from sklearn.tree import DecisionTreeClassifier as SK
+from model.tree import DecisionTreeRegression as ME
+from sklearn.tree import DecisionTreeRegressor as SK
 
 dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
            'multi': load_iris, 'cv': load_digits}
