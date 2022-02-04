@@ -9,6 +9,7 @@ from utils.param import init_params
 from utils.functional import Identity
 
 
+# TODO still not add l1/l2
 class SGDBase(object):
     def __init__(self, loss, penalty, lr):
         self.w = None
@@ -72,13 +73,13 @@ class SGDRegression(SGDBase):
 
 
 class SGDClassifier(SGDBase):
-    def __init__(self, loss='log', penalty='l1', lr=1.e-3):
+    def __init__(self, loss='ce', penalty='l1', lr=1.e-3):
         super(SGDClassifier, self).__init__(loss, penalty, lr)
-        pass
+        self.n_classes = None
 
     def get_loss(self, loss):
-        if loss == 'log':
-            self.loss = mse
+        if loss == 'ce':
+            self.loss = ce
         elif loss == 'hinge':
             # TODO (soft-interval) linear support vector machines
             pass
@@ -86,24 +87,30 @@ class SGDClassifier(SGDBase):
             # TODO smoothed hinge loss
             pass
 
-    def fit(self, x, y, iteration=100):
+    def fit(self, x, y, iteration=1000):
         """
         :param x: [n_sample, n_feature]
-        :param y: [n_sample, n_classes]
+        :param y: [n_sample, ]
         :param iteration:
         :return:
         """
         m, n = x.shape
+        y = y.reshape(-1)
+        self.n_classes = len(np.unique(y))
         # init params
-        self.w = init_params(n, y.shape[1])
-        self.bias = np.zeros([1, y.shape[1]])
+        self.w = init_params(n, self.n_classes)
+        self.bias = np.zeros([1, self.n_classes])
         for iter in range(iteration):
             self.fit_one_loop(x, y)
-        self._score, _ = mse(self.predict(x), y)
+        self._score, _ = ce(self.predict(x), y)
 
     def predict(self, x):
         z = x.dot(self.w) + self.bias
-        return 1 / (1 + np.exp(-z))
+        _max = np.max(z, axis=1, keepdims=True)  # returns max of each row and keeps same dims
+        e_z = np.exp(z - _max)  # subtracts each row with its max value
+        _sum = np.sum(e_z, axis=1, keepdims=True)  # returns sum of each row and keeps same dims
+        y = e_z / _sum
+        return y
 
 
 def mse(pre, y):
@@ -112,6 +119,14 @@ def mse(pre, y):
     return l, dl
 
 
-# todo not finish yet
-def log(pre, y):
-    pre()
+def ce(pre, y):
+    y = y.reshape(-1)
+    n_classes = len(np.unique(y))
+    one_hot = np.zeros_like(pre)
+    dl = pre.copy()
+    for i in range(n_classes):
+        one_hot[y == i, i] = 1
+    pre = np.sum(one_hot * pre, axis=1)
+    dl -= one_hot
+    l = np.mean(-np.log(pre + 1.e-10))
+    return l, dl

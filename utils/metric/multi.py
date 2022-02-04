@@ -91,6 +91,15 @@ def accuracy(prob, y, mode='macro'):
         return micro
 
 
+def acc_v2(pre, y):
+    """
+    :param pre: logic prediction, not a prob, [n_sample, ]
+    :param y: label, [n_sample, ]
+    :return:
+    """
+    return np.mean(pre == y)
+
+
 def tpr(prob, y, mode='macro'):
     """
     It is recall

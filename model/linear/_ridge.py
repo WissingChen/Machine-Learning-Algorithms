@@ -7,7 +7,7 @@
 import numpy as np
 from scipy.sparse import linalg as sp_linalg
 from utils.metric.regression import mse
-from utils.metric.binary import _acc
+from utils.metric.binary import acc_v2
 
 
 class Ridge(object):
@@ -56,10 +56,13 @@ class Ridge(object):
         # use mse
         self._score = mse(np.dot(x, self.w), y)
 
-    def predict(self, x):
+    def _predict(self, x):
         m = x.shape[0]
         x = np.concatenate([np.ones([m, 1]), x], axis=1)
         return np.dot(x, self.w)
+
+    def predict(self, x):
+        return self._predict(x)
 
     def score(self):
         return self._score
@@ -93,15 +96,15 @@ def _lsqr(x, y, alpha):
 
 class RidgeClassifier(Ridge):
     """
-    Only for binary classification
+    Only for binary classification, and doesn't have probability prediction
 
     Parameter
     ---------
     alpha: l2 coefficient   \n
     solver: choice in ['none', 'lsqr']
     """
-    def __init__(self, alpha=.1, solver='none'):
-        Ridge.__init__(self, alpha=alpha, solver=solver)
+    def __init__(self, alpha=1., solver='none'):
+        super(RidgeClassifier, self).__init__(alpha, solver)
 
     @staticmethod
     def cvt_input(y):
@@ -113,5 +116,14 @@ class RidgeClassifier(Ridge):
         y_hat = self.cvt_input(y)
         Ridge.fit(self, x, y_hat)
         # use acc
-        self._score = _acc(self.predict(x), y)
+        self._score = acc_v2(self.predict(x), y)
+
+    def predict(self, x):
+        """
+        :return: the prediction of label, [n_sample, ]
+        """
+        pre = self._predict(x)
+        pre[pre >= 0] = 1
+        pre[pre < 0] = 0
+        return pre.reshape(-1)
 

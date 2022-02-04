@@ -136,7 +136,7 @@ def _for_test():
     print(auc(x, y))
 
 
-def _acc(pre, y, th=.5):
+def acc_v2(pre, y, th=.5):
     """
     calculate the accuracy without confusion matrix
     """

@@ -9,14 +9,13 @@ import utils.functional as _f
 from utils import solver as _solver
 from utils import loss as _loss
 from utils.metric.binary import roc, auc
-from ..base import Base
 from utils.param import init_params
 
 n_activation = {"relu": _f.Relu, "tanh": _f.tanh, "sigmoid": _f.sigmoid, 'none': _f.Identity}
 n_solver = {"sgd": _solver.SGD}
 
 
-class MLPBase(Base):
+class MLPBase(object):
     def __init__(self, dim=(100,), activation='relu', solver="sgd", alpha=0.0001,
                  learning_rate=1e-3, val_ratio=0.1):
         super(MLPBase, self).__init__()
