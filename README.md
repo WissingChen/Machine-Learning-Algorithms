@@ -12,7 +12,7 @@ Recently, I review the Machine Learning and try to program all algorithms of it 
 - [ ] ElasticNet
 - [X] SGDClassifier
 - [X] SGDRegression
-- [X] LogisticRegression
+- [X] LogisticRegression _(sometimes, still not good)_
 - [ ] BayesRidge
 - [ ] ARDRegression
 - [ ] Perceptron

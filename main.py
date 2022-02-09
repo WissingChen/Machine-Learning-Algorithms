@@ -15,8 +15,8 @@ from utils.metric.binary import accuracy, acc_v2
 from utils.metric.multi import accuracy as accuracy_m, acc_v2 as acc_v2_m
 
 import numpy as np
-from model.linear import LogisticRegression as ME
-from sklearn.linear_model import LogisticRegression as SK
+from model.nn import MLPClassifier as ME
+from sklearn.neural_network import MLPClassifier as SK
 
 dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
            'multi': load_iris, 'cv': load_digits}
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     test = data[:_m]
     # model
     model = ME()
-    model_gt = SK(solver='sag', max_iter=10000)
+    model_gt = SK()
     # train
     model.fit(train[:, :n], train[:, n:])
     model_gt.fit(train[:, :n], train[:, n:])

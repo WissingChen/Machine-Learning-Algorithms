@@ -53,6 +53,7 @@ class Identity(object):
         self.x = None
 
     def __call__(self, x):
+        self.x = x
         return x
 
     def backward(self, dy):

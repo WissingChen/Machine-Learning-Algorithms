@@ -139,6 +139,8 @@ def _for_test():
 def acc_v2(pre, y, th=.5):
     """
     calculate the accuracy without confusion matrix
+    :param pre: prob value of "1" class with shape [n_sample,]
+    :param y: label, [n_sample,]
     """
     # pre /= pre.max()
     pre[pre >= th] = 1

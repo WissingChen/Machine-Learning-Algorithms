@@ -75,28 +75,33 @@ def _cd(x, y, alpha=1., max_iter=100, tol=1e-5):
     return w
 
 
-def _sgd(x, y, lr=1.e-3, alpha=1., max_iter=100, tol=1e-4):
+def _sgd(x, y, lr=1.e-5, alpha=1., momentum=0.9, max_iter=1000, tol=1e-4):
+    is_max_iter = True
     m, n = x.shape
     n_classes = len(np.unique(y.reshape(-1)))
     w = init_params(n, n_classes)
+    velocity = 0
     # old_w = np.zeros_like(w)
     y_hat = one_hot(y)
     _index = np.arange(m)
-    batch_size = int(m/10)
+    # batch_size = int(m/10)
     for _iter in range(max_iter):
-        np.random.shuffle(_index)
-        old_w = w.copy()
-        for _batch in range(10):
-            temp_index = _index[_batch * batch_size: (_batch + 1) * batch_size]
-            train_x = x[temp_index]
-            train_y = y_hat[temp_index]
+        # np.random.shuffle(_index)
+        for _batch in range(m):
+            old_w = w.copy()
+            # temp_index = _index[_batch * batch_size: (_batch + 1) * batch_size]
+            train_x = x[_index]
+            train_y = y_hat[_index]
             z = train_x.dot(w)
             px = sigmoid(z)
             gx = train_x.T.dot((px - train_y)) + alpha * w
-            w = w - lr * gx
-        # check conditions of convergence
-        w_updates = np.abs(w - old_w)
-        if np.max(w_updates) < tol:
-            break
+
+            velocity = lr * gx + momentum * velocity
+            w -= velocity
+            # check conditions of convergence
+            w_updates = np.abs(w - old_w)
+            if np.max(w_updates) < tol:
+                is_max_iter = False
+                break
     return w
 

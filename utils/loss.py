@@ -5,6 +5,7 @@
 # @file    : loss.py
 # @time    : 16/12/2021 下午1:12
 import numpy as np
+from utils.param import one_hot
 
 
 class CrossEntropyLoss(object):
@@ -14,17 +15,12 @@ class CrossEntropyLoss(object):
     def __call__(self, pre, y):
         """
         :param pre: pre_prob, shape like [n_sample, n_classes]
-        :param y: target, not a one-hot, shape like [n_sample, 1]
+        :param y: target, a one-hot value, shape like [n_sample, n_classes]
         :return:
         """
-        y = y.reshape(-1)
-        m = len(np.unique(y))
-        one_hot = np.zeros_like(pre)
         self.grid = pre.copy()
-        for i in range(m):
-            one_hot[y == i, i] = 1
-        pre = np.sum(one_hot * pre, axis=1)
-        self.grid -= one_hot
+        pre = np.sum(y * pre, axis=1)
+        self.grid -= y
         loss = np.mean(-np.log(pre+1.e-10))
         return loss
 
