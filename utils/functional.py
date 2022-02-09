@@ -17,8 +17,9 @@ def identity(x):
 def sigmoid(x):
     """
     the logistic sigmoid function
+    1 / (1 + np.exp(-x)) it will cause overflow in exp
     """
-    return 1 / (1 + np.exp(-x))
+    return .5 * (1 + np.tanh(.5 * x))
 
 
 def tanh(x):

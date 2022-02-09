@@ -73,7 +73,7 @@ class MLPBase(object):
         dx, dw, db = self.network[-1].backward(dy)
         self.cache += [[dw, db]]
         for i in range(2, len(self.network) + 1):
-            dy = self.activation[-i+1].backward(dx)
+            dy = self.activation[-i + 1].backward(dx)
             dx, dw, db = self.network[-i].backward(dy)
             self.cache += [[dw, db]]
         return loss
@@ -87,9 +87,7 @@ class MLPBase(object):
 
 class MLPClassifier(MLPBase):
     """
-    默认使用验证集和早停
-    使用交叉熵
-    最后的输出使用 softmax
+    Default to use the validation set and early stopCross entropyThe final output is using softmax
     """
 
     def __init__(self, dim=(100, 100), activation='relu', solver="sgd", alpha=0.0001,

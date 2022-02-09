@@ -12,7 +12,7 @@ Recently, I review the Machine Learning and try to program all algorithms of it 
 - [ ] ElasticNet
 - [X] SGDClassifier
 - [X] SGDRegression
-- [ ] LogisticRegression
+- [X] LogisticRegression
 - [ ] BayesRidge
 - [ ] ARDRegression
 - [ ] Perceptron
@@ -21,12 +21,23 @@ Recently, I review the Machine Learning and try to program all algorithms of it 
   
 #### Decision Tree
 - [X] Decision Tree Classifier
-- [ ] Decision Tree Regression
+- [X] Decision Tree Regression
   
 #### Neural Network
 - [X] MLP Classifier
 - [X] MLP Regression
-  
+    #### Solver
+    - [X] SGD
+    - [X] Momentum
+    - [ ] AdaGrad
+    - [ ] RMSprop
+    - [ ] Adadelta
+    - [ ] Nesterov
+    - [ ] Adma
+    - [ ] AdaMax 
+    - [ ] Nadam
+    - [ ] AMSGrad
+
 #### Support Vector Machine
 - [ ] SVC
 - [ ] SVR

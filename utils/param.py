@@ -15,3 +15,9 @@ def init_params(in_m, out_m, method='kaiming'):
     elif method == 'none':
         return np.random.randn(in_m, out_m) * 1.e-3
 
+
+def one_hot(label):
+    label = label.astype(np.int8).reshape([-1])
+    dst = np.zeros((label.size, label.max() + 1))
+    dst[np.arange(label.size), label] = 1
+    return dst
