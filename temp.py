@@ -11,5 +11,4 @@ m = 100
 n_classes = 2
 y = np.zeros([100, 1]).astype(np.int8)
 y[::2, 0] = 1
-print(y)
-print(one_hot(y))
+print(np.mean(y))

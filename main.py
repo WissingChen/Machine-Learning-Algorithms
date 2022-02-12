@@ -15,8 +15,8 @@ from utils.metric.binary import accuracy, acc_v2
 from utils.metric.multi import accuracy as accuracy_m, acc_v2 as acc_v2_m
 
 import numpy as np
-from model.nn import MLPClassifier as ME
-from sklearn.neural_network import MLPClassifier as SK
+from model.svm import SVC as ME
+from sklearn.svm import SVC as SK
 
 dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
            'multi': load_iris, 'cv': load_digits}

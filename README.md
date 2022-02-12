@@ -39,7 +39,7 @@ Recently, I review the Machine Learning and try to program all algorithms of it 
     - [ ] AMSGrad
 
 #### Support Vector Machine
-- [ ] SVC
+- [X] SVC _stable, but still need modification_
 - [ ] SVR
 
 #### Feature

@@ -101,7 +101,6 @@ def _sgd(x, y, lr=1.e-5, alpha=1., momentum=0.9, max_iter=1000, tol=1e-4):
             # check conditions of convergence
             w_updates = np.abs(w - old_w)
             if np.max(w_updates) < tol:
-                is_max_iter = False
                 break
     return w
 
