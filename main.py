@@ -15,8 +15,8 @@ from utils.metric.binary import accuracy, acc_v2
 from utils.metric.multi import accuracy as accuracy_m, acc_v2 as acc_v2_m
 
 import numpy as np
-from model.svm import SVC as ME
-from sklearn.svm import SVC as SK
+from model.svm import SVR as ME
+from sklearn.svm import SVR as SK
 
 dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
            'multi': load_iris, 'cv': load_digits}
@@ -24,7 +24,7 @@ dataset = {'regression': load_diabetes, 'binary': load_breast_cancer,
 task = ['regression', 'binary', 'multi', 'cv']
 
 if __name__ == '__main__':
-    task_id = 1
+    task_id = 0
     x, y = dataset[task[task_id]](return_X_y=True)
     m, n = x.shape
     data = np.concatenate([x, y.reshape([m, -1])], axis=1)

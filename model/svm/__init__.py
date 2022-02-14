@@ -5,3 +5,4 @@
 # @file    : __init__.py.py
 # @time    : 12/12/2021 下午3:06
 from ._svm import SVC
+from ._svm import SVR
