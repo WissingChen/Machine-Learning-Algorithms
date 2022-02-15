@@ -33,8 +33,8 @@ if __name__ == '__main__':
     train = data[_m:]
     test = data[:_m]
     # model
-    model = ME()
-    model_gt = SK()
+    model = ME(kernel='linear')
+    model_gt = SK(kernel='linear')
     # train
     model.fit(train[:, :n], train[:, n:])
     model_gt.fit(train[:, :n], train[:, n:])

@@ -40,7 +40,7 @@ Recently, I review the Machine Learning and try to program all algorithms of it 
 
 #### Support Vector Machine
 - [X] SVC _stable, but still need modification_
-- [ ] SVR
+- [X] SVR
 
 #### Feature
 - [ ] bayes
