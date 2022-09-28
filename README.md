@@ -1,30 +1,29 @@
 # Machine-Learning-Algorithms
 Recently, I review the Machine Learning and try to program all algorithms of it only use __NumPy__
-(maybe use some api from scipy).
 
-## TODO
+## Progress
 
-#### Linear Model
+### Linear Model
 - [X] Linear Regression
 - [X] Ridge
 - [X] RidgeClassifier
 - [X] Lasso
-- [ ] ElasticNet
-- [X] SGDClassifier
+- [X] LogisticRegression
 - [X] SGDRegression
-- [X] LogisticRegression _(sometimes, still not good)_
+- [X] SGDClassifier
+- [X] ElasticNet
 - [ ] BayesRidge
 - [ ] ARDRegression
 - [ ] Perceptron
 - [ ] PassiveAggressiveClassifier
 - [ ] PassiveAggressiveRegression
   
-#### Decision Tree
+### Decision Tree
 - [X] Decision Tree Classifier
 - [X] Decision Tree Regression
   
-#### Neural Network
-- [X] MLP Classifier
+### Neural Network
+- [X] MLP Classifier *_performance of binary task is not good_
 - [X] MLP Regression
     #### Solver
     - [X] SGD
@@ -33,23 +32,34 @@ Recently, I review the Machine Learning and try to program all algorithms of it 
     - [ ] RMSprop
     - [ ] Adadelta
     - [ ] Nesterov
-    - [ ] Adma
+    - [ ] Adam
     - [ ] AdaMax 
     - [ ] Nadam
     - [ ] AMSGrad
 
-#### Support Vector Machine
-- [X] SVC _stable, but still need modification_
-- [X] SVR
+### Support Vector Machine
+- [X] SVC *_only binary task_
+- [X] SVR *_only single output_
+- [ ] multi-output
 
-#### Feature
-- [ ] bayes
-- [ ] ensemble
-- [ ] ....
+### Bayes
+- [ ] Naive Bayes
+- [ ] GaussianNB
+- [ ] BernoulliNB
+- [ ] CategoricalNB
+- [ ] MultinomialNB
+- [ ] ComplementNB
+
+### Feature
+- [ ] Ensemble
+- [ ] Cluster
+- [ ] Feature Select & Dimension Reduction
+- [ ] Reinforcement Learning
+- [ ] Probabilistic Model
   
 
 __Note:__ Of course, it maybe still has some mistake
 
 
 ## Usage
-Similar to *sci-kit learning*, import the model which you need, and .fit() it by the training dataset.
+Similar to *sci-kit learning*, import the model which you need, and .fit() it from the training dataset.

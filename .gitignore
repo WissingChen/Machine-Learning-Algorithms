@@ -1,2 +1,7 @@
 .idea/*
 .vscode/*
+*.pyc
+*.xml
+.idea/workspace.xml
+.idea/misc.xml
+.idea/Machine-Learning-Algorithms.iml

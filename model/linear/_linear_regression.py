@@ -26,11 +26,8 @@ class LinearRegression(object):
         """
         Fit Linear Regression model.
 
-        Parameters
-        ----------
-        x : input data with shape [n_sample, n_feature]
-        y : target with shape [n_sample, n_output] or [n_sample,]
-
+        :param x: input data with shape [n_sample, n_feature]
+        :param y: target with shape [n_sample, n_output] or [n_sample,]
         """
         m, n = x.shape
         y = y.reshape([m, -1])

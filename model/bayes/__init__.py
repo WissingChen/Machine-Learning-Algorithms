@@ -4,3 +4,4 @@
 # @software: PyCharm
 # @file    : __init__.py.py
 # @time    : 12/12/2021 下午3:07
+from ._bayes import BaseNB

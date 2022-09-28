@@ -43,7 +43,7 @@ class MLPBase(object):
     def preprocess_data(self, y):
         return y
 
-    def fit(self, x, y, epoch=100, batch_size=200):
+    def fit(self, x, y, epoch=100, batch_size=200, log=False):
         m, n = x.shape
         val_m = int(self.val_ratio * m)
         train_m = m - val_m
@@ -70,7 +70,8 @@ class MLPBase(object):
                 self.zero_grid()
                 loss = self.backward(pre, sample_y)
                 self.solver.step(self.network, self.cache)
-                print(f"{ep + 1}/{epoch}\tTrain:\tLoss={loss:.4f}")
+                if log:
+                    print(f"{ep + 1}/{epoch}\tTrain:\tLoss={loss:.4f}")
             # val
             for _index in range(0, val_m, batch_size):
                 if _index + batch_size < val_m:
@@ -81,7 +82,8 @@ class MLPBase(object):
                 sample_y = val_data[:, n:]
                 loss = self.backward(pre, sample_y)
                 # print(self.network[0].weight[0, :10])
-                print(f"{ep + 1}/{epoch}\tVal:\tLoss={loss:.4f}")
+                if log:
+                    print(f"{ep + 1}/{epoch}\tVal:\tLoss={loss:.4f}")
 
         self.score_fn(x, y)
 

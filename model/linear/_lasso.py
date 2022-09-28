@@ -20,13 +20,15 @@ class Lasso(object):
     Technically the Lasso model is optimizing the same objective function as
     the Elastic Net with ``l1_ratio=1.0`` (no L2 penalty).
 
-    :param alpha: l1 value
-    :param solver: 'none', 'cd', 'lars'
+    """
+    def __init__(self, alpha=1., solver='none'):
+        """
+        :param alpha: l1 value
+        :param solver: ['none', 'cd', 'lars']
                     'none': only use Ordinary Least Squares
                     'cd': Coordinate Descent
                     'lars': Least Angle Regression
-    """
-    def __init__(self, alpha=.1, solver='none'):
+        """
         self.w = None
         self.alpha = alpha
         self.solver = solver
@@ -36,10 +38,8 @@ class Lasso(object):
         """
         Fit Lasso Regression model.
 
-        Parameters
-        ----------
-        x : input data with shape [n_sample, n_feature]
-        y : target with shape [n_sample, n_output] or [n_sample,]
+        :param x: input data with shape [n_sample, n_feature]
+        :param y: target with shape [n_sample, n_output] or [n_sample,]
 
         """
         m, n = x.shape
@@ -49,8 +49,10 @@ class Lasso(object):
             self.w = _cd(x, y, self.alpha)
         elif self.solver == 'none':
             self.w = _ols(x, y, self.alpha)
-        elif self.solver == 'lars':
-            self.w = _lars(x, y, self.alpha)
+        # elif self.solver == 'lars':
+        #     self.w = _lars(x, y, self.alpha)
+        else:
+            raise ValueError
         self._score = mse(np.dot(x, self.w), y)
 
     def predict(self, x):

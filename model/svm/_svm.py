@@ -84,6 +84,10 @@ class BaseSVM(object):
 
 
 class SVC(BaseSVM):
+    """
+    only for binary classification
+    TODO multi classification
+    """
     def __init__(self, C=1., kernel='linear', degree=3., gamma='scale'):
         super(SVC, self).__init__(C=C, kernel=kernel, degree=degree, gamma=gamma)
         self.turn = 1
@@ -132,6 +136,8 @@ class SVC(BaseSVM):
 
 class SVR(BaseSVM):
     """
+    TODO multi-output regression
+
     :param C: float, default=1.0
         Regularization parameter. The strength of the regularization is
         inversely proportional to C. Must be strictly positive.

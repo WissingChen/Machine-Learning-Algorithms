@@ -24,13 +24,12 @@ class Ridge(object):
     This estimator has built-in support for multi-variate regression
     (i.e., when y is a 2d-array of shape (n_samples, n_targets)).
 
-    Parameter
-    ---------
-    alpha: l2 coefficient   \n
-    solver: choice in ['none', 'lsqr']
-
     """
-    def __init__(self, alpha=.1, solver='none'):
+    def __init__(self, alpha=1., solver='none'):
+        """
+        :param alpha: l2 coefficient
+        :param solver: choice in ['none', 'lsqr']
+        """
         self.w = None
         self.alpha = alpha
         self.solver = solver
@@ -40,10 +39,8 @@ class Ridge(object):
         """
         Fit Ridge Regression model.
 
-        Parameters
-        ----------
-        x : input data with shape [n_sample, n_feature]
-        y : target with shape [n_sample, n_output] or [n_sample,]
+        :param x: input data with shape [n_sample, n_feature]
+        :param y: target with shape [n_sample, n_output] or [n_sample,]
 
         """
         m, n = x.shape
@@ -53,6 +50,8 @@ class Ridge(object):
             self.w = _lsqr(x, y, self.alpha)
         elif self.solver == 'none':
             self.w = np.linalg.inv(np.dot(x.T, x) + self.alpha * np.eye(n+1)).dot(x.T).dot(y)
+        else:
+            raise ValueError
         # use mse
         self._score = mse(np.dot(x, self.w), y)
 
@@ -98,10 +97,6 @@ class RidgeClassifier(Ridge):
     """
     Only for binary classification, and doesn't have probability prediction
 
-    Parameter
-    ---------
-    alpha: l2 coefficient   \n
-    solver: choice in ['none', 'lsqr']
     """
     def __init__(self, alpha=1., solver='none'):
         super(RidgeClassifier, self).__init__(alpha, solver)
@@ -123,7 +118,7 @@ class RidgeClassifier(Ridge):
         :return: the prediction of label, [n_sample, ]
         """
         pre = self._predict(x)
-        pre[pre >= 0] = 1
-        pre[pre < 0] = 0
+        pre[pre > 0] = 1
+        pre[pre <= 0] = 0
         return pre.reshape(-1)
 

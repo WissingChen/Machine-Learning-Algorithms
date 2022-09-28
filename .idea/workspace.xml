@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f850ea26-bb81-4255-b881-aecdf8e0a1a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/model/svm/kernel_func.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/bayes/_bayes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Machine-Learning-Algorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Machine-Learning-Algorithms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/bayes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bayes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/linear/_elasticnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_elasticnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/linear/_lasso.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_lasso.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/linear/_linear_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_linear_regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/linear/_logistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_logistic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/linear/_ridge.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_ridge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/linear/_sgd.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/linear/_sgd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/nn/_mlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/nn/_mlp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/svm/_svm.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/svm/_svm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,29 +60,33 @@
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/model/tree/_tree.py" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="22GvjJzpNxq9t2GFzZZ7fitbe0F" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Other/JiaRui/Lung-CT-Enhance-Based-PCT" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+    "last_opened_file_path": "E:/project/Study/Machine-Learning-Algorithms",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="H:\project\Study\Machine-Learning-Algorithms\utils\metric" />
@@ -97,7 +115,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="_mlp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="_sgd" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Machine-Learning-Algorithms" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -105,12 +123,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model/nn" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model/linear" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/nn/_mlp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/linear/_sgd.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -209,7 +227,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.multi" />
-      <item itemvalue="Python._mlp" />
+      <item itemvalue="Python._sgd" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.temp" />
       <item itemvalue="Python._logistic" />
@@ -218,10 +236,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python._sgd" />
         <item itemvalue="Python._svm" />
         <item itemvalue="Python.temp" />
         <item itemvalue="Python._logistic" />
-        <item itemvalue="Python._mlp" />
       </list>
     </recent_temporary>
   </component>
@@ -251,7 +269,14 @@
       <workItem from="1642423075718" duration="4000" />
       <workItem from="1643358415577" duration="35977000" />
       <workItem from="1644221272200" duration="46932000" />
-      <workItem from="1644635572879" duration="49391000" />
+      <workItem from="1644635572879" duration="65310000" />
+      <workItem from="1645540137941" duration="2492000" />
+      <workItem from="1646030009213" duration="957000" />
+      <workItem from="1646117609387" duration="2122000" />
+      <workItem from="1646271709831" duration="1194000" />
+      <workItem from="1648395109007" duration="1420000" />
+      <workItem from="1654348382002" duration="23000" />
+      <workItem from="1664358673600" duration="22268000" />
     </task>
     <servers />
   </component>
@@ -268,25 +293,35 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="4" />
+          <line>46</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model/nn/_mlp.py</url>
+          <line>141</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model/nn/_mlp.py</url>
+          <line>150</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$main.coverage" NAME="main Coverage Results" MODIFIED="1644908473910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$_logistic.coverage" NAME="_logistic Coverage Results" MODIFIED="1644401351725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/linear" />
     <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$_mlp.coverage" NAME="_mlp Coverage Results" MODIFIED="1639660799249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/nn" />
-    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$multi.coverage" NAME="multi Coverage Results" MODIFIED="1641484137578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$_svm.coverage" NAME="_svm Coverage Results" MODIFIED="1644746531635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/svm" />
+    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$main.coverage" NAME="main Coverage Results" MODIFIED="1664382916632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$temp.coverage" NAME="temp Coverage Results" MODIFIED="1644687273982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$_sgd.coverage" NAME="_sgd Coverage Results" MODIFIED="1664376438294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/linear" />
+    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$_svm.coverage" NAME="_svm Coverage Results" MODIFIED="1644746531635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/svm" />
+    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$_logistic.coverage" NAME="_logistic Coverage Results" MODIFIED="1644401351725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/linear" />
+    <SUITE FILE_PATH="coverage/Machine_Learning_Algorithms$multi.coverage" NAME="multi Coverage Results" MODIFIED="1641484137578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
